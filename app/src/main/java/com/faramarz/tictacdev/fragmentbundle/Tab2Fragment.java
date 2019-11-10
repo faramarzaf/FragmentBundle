@@ -45,14 +45,14 @@ public class Tab2Fragment extends Fragment {
             mymonth = bundle.getLong(KEY_MONTH, 0);
             myyear = bundle.getLong(KEY_YEAR, 0);
             if (bundle.containsKey(KEY_MALE)) {
-                txtGender.setText(strMale);
+                txtGender.setText("Gender: "+strMale);
             } else if (bundle.containsKey(KEY_FEMALE)) {
-                txtGender.setText(strFemale);
+                txtGender.setText("Gender: "+strFemale);
             }
 
-            txtCash.setText(myInt);
+            txtCash.setText("Cache: "+myInt);
             txtReceivedDate.setText(new StringBuilder()
-                    .append(myday)
+                    .append("Date: "+myday)
                     .append("-")
                     .append(mymonth)
                     .append("-")
