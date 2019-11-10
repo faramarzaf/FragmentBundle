@@ -18,20 +18,60 @@
             android:hint="Enter your available cash..."
             android:inputType="number" />
 
+
         <TextView
-            android:id="@+id/txtSelectDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#5EBED1"
-            android:drawableStart="@mipmap/ic_launcher"
+            android:layout_marginTop="10dp"
+            android:text="Select your gender"
+            android:textSize="15sp" />
+
+        <RadioGroup
+            android:id="@+id/rgProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:gravity="start"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rbFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rbMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="Male"
+                android:textSize="12sp" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txtSelectDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="#9DC2E7"
+            android:drawableStart="@drawable/ic_date"
             android:gravity="center"
-            android:padding="16dp"
-            android:text="Select date" />
+            android:padding="15dp"
+            android:text="Select date"
+            android:textColor="#000000" />
 
         <Button
             android:id="@+id/btnPassData"
-            android:layout_width="match_parent"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:gravity="center"
             android:text="Pass my info to credit fragment" />
 
     </LinearLayout>

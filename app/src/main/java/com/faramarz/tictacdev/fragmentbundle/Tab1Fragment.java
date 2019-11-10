@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,10 +20,13 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.Calendar;
 
-import static com.faramarz.tictacdev.fragmentbundle.PublicValue.KEY_CACHE;
-import static com.faramarz.tictacdev.fragmentbundle.PublicValue.KEY_DAY;
-import static com.faramarz.tictacdev.fragmentbundle.PublicValue.KEY_MONTH;
-import static com.faramarz.tictacdev.fragmentbundle.PublicValue.KEY_YEAR;
+import static com.faramarz.tictacdev.fragmentbundle.PublicKeys.KEY_CACHE;
+import static com.faramarz.tictacdev.fragmentbundle.PublicKeys.KEY_DAY;
+import static com.faramarz.tictacdev.fragmentbundle.PublicKeys.KEY_FEMALE;
+import static com.faramarz.tictacdev.fragmentbundle.PublicKeys.KEY_MALE;
+import static com.faramarz.tictacdev.fragmentbundle.PublicKeys.KEY_MONTH;
+import static com.faramarz.tictacdev.fragmentbundle.PublicKeys.KEY_YEAR;
+
 
 public class Tab1Fragment extends Fragment implements View.OnClickListener {
 
@@ -32,6 +37,8 @@ public class Tab1Fragment extends Fragment implements View.OnClickListener {
     private Tab2Fragment fragment;
     private TextView txtSelectDate;
     private DatePickerDialog datePickerDialog;
+    private RadioGroup rg;
+    private RadioButton rbMale, rbFemale;
 
     private int mYear, mMonth, mDay;
     private int currYear, currMonth, currDay;
@@ -47,6 +54,12 @@ public class Tab1Fragment extends Fragment implements View.OnClickListener {
         btnPassCash = view.findViewById(R.id.btnPassData);
         tabhost = view.findViewById(R.id.tabLayout);
         txtSelectDate = view.findViewById(R.id.txtSelectDate);
+
+        rbMale = view.findViewById(R.id.rbMale);
+        rbFemale = view.findViewById(R.id.rbFemale);
+        rg = view.findViewById(R.id.rgProfile);
+
+
         txtSelectDate.setPaintFlags(txtSelectDate.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         btnPassCash.setOnClickListener(this);
         txtSelectDate.setOnClickListener(this);
@@ -56,7 +69,6 @@ public class Tab1Fragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
             case R.id.btnPassData:
                 sendData();
                 navigateToSecondTab();
@@ -71,7 +83,6 @@ public class Tab1Fragment extends Fragment implements View.OnClickListener {
 
     private void getDate() {
         final Calendar c = Calendar.getInstance();
-
         mYear = c.get(Calendar.YEAR);
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
@@ -104,6 +115,14 @@ public class Tab1Fragment extends Fragment implements View.OnClickListener {
         bundle.putLong(KEY_DAY, currDay);
         bundle.putLong(KEY_MONTH, currMonth);
         bundle.putLong(KEY_YEAR, currYear);
+        int id = rg.getCheckedRadioButtonId();
+        //if (rg.getCheckedRadioButtonId() != -1)
+        if (id == R.id.rbMale) {
+            bundle.putString(KEY_MALE, rbMale.getText().toString());
+        } else if (id == R.id.rbFemale) {
+            bundle.putString(KEY_FEMALE, rbFemale.getText().toString());
+        }
+
         fragment = new Tab2Fragment();
         fragment.setArguments(bundle);
         if (getActivity().getFragmentManager() != null)
